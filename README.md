@@ -1,45 +1,53 @@
-# Wan 2.1 - Text-to-Video AI Generator
+# 🌌 Wan 2.1 — Text-to-Video AI Generator
 
-👋 This repository was created to explore and experiment with **text-to-video generation** using the powerful **Wan 2.1 T2V 1.3B** model released by Alibaba. The goal is to **generate videos from natural language prompts** for use in AI research, media automation, and creative storytelling.
+> Generate videos straight from natural language prompts using Alibaba’s cutting-edge **Wan 2.1 T2V 1.3B** model.
 
-This repo serves as a clean and fully working wrapper to run the model locally on consumer-grade GPUs (like RTX 3050) with options to offload memory and run inference even on constrained hardware.
+[![License](https://img.shields.io/badge/license-educational-blue.svg)](#license)
+[![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](#)
+[![Torch](https://img.shields.io/badge/powered_by-pytorch-red.svg)](#)
+
+---
+
+## ✨ Why This Repo?
+
+This project was built to **explore the future of AI-driven media** using open-source tools. With **Wan 2.1**, you can generate videos from just a text description — unlocking potential in:
+
+- 🎨 Creative storytelling  
+- 🧪 Research workflows  
+- 🎞️ Automated content generation
+
+> 🖥️ Runs even on modest hardware like **RTX 3050 + i5 13th Gen + Windows 11**  
+> 🔋 Supports offloading and memory-efficient execution
 
 ---
 
 ## 🚀 Features
 
-- Generate short videos from just a text prompt (Text-to-Video)
-- Pretrained 1.3B model (UMT5-based encoder + VAE decoder)
-- Works with low VRAM GPUs using CPU offloading
-- Torch-based implementation with customizable inference
-- Tested on Windows 11, RTX 3050, i5 13th Gen CPU
+✅ Text-to-Video Generation  
+✅ Pretrained 1.3B model (UMT5 + VAE)  
+✅ Offloading for low VRAM GPUs  
+✅ Torch-based, modular architecture  
+✅ Windows/Linux friendly setup  
 
 ---
 
 ## 📦 Installation
 
-### 1. Clone the repo
+### 1️⃣ Clone the repo
 ```bash
 git clone https://github.com/Theubaa/Wan-2.1.git
 cd Wan-2.1
-```
 
-### 2. Set up a virtual environment (optional but recommended)
-```bash
-python -m venv venv
+
+2️⃣ (Optional) Set up a virtual environment
+bash
+
 venv\Scripts\activate  # On Windows
-```
+3️⃣ Install required packages
 
-### 3. Install dependencies
-```bash
 pip install torch torchvision einops transformers ftfy accelerate easydict
-```
+🎬 Quick Start
 
----
-
-## 🎬 Usage Example
-
-```powershell
 python generate.py `
   --task t2v-1.3B `
   --size 832*480 `
@@ -49,49 +57,40 @@ python generate.py `
   --t5_cpu `
   --sample_shift 8 `
   --sample_guide_scale 6
-```
+💡 PowerShell users: Use backticks (`) for line breaks
+💡 Bash users: Use \ instead
 
-💡 PowerShell users: Use the backtick (`` ` ``) for line breaks.  
-💡 Bash users: Replace backticks with `\`.
+📁 Checkpoint Files
+Create a folder named Wan2.1-T2V-1.3B and place the following inside:
 
----
+models_t5_umt5-xxl-enc-bf16.pth
 
-## 📁 Required Checkpoints
+Wan2.1_VAE.pth
 
-Place these inside a folder named `Wan2.1-T2V-1.3B`:
+🔐 These files are not included in this repo. You must obtain them directly from the authors or release site.
 
-- `models_t5_umt5-xxl-enc-bf16.pth`
-- `Wan2.1_VAE.pth`
+⚙️ Optional Flags
+Flag	Description
+--sample_steps	Number of denoising steps (default: 50)
+--sample_shift	Time shift for style diversity
+--sample_guide_scale	Guidance strength for prompt adherence
 
-> These are not provided in this repo. You'll need to download them from official sources or request them based on Alibaba's release terms.
+⚠️ Notes
+🕒 Generation may take 2–5 minutes depending on GPU
 
----
+🧠 Use --t5_cpu + --offload_model to reduce VRAM use
 
-## ⚙️ Optional Parameters
+🔒 FlashAttention fallback is handled automatically
 
-- `--sample_steps` → Number of inference steps (default: 50)
-- `--sample_shift` → Time shift control for diversity
-- `--sample_guide_scale` → Classifier-free guidance scale
+📄 License
+This repository is provided for educational and experimental use only.
+All model weights, research, and architecture are the property of Alibaba DAMO Academy.
 
----
+🙌 Acknowledgements
+🤖 Alibaba Wan Team
 
-## ⚠️ Notes
+🔥 HuggingFace Transformers
 
-- Generation time may take several minutes on 6–8GB GPUs
-- `--offload_model` and `--t5_cpu` help reduce GPU usage
-- FlashAttention is disabled for compatibility by default
+🧠 PyTorch, Accelerate, TorchVision, Einops
 
----
-
-## 📄 License
-
-This repository is for **educational and experimental use** only.  
-Model and architecture rights belong to **Alibaba DAMO Academy**.
-
----
-
-## 🙌 Credits
-
-- [Alibaba Wan Team](https://damo.alibaba.com/) for the original model
-- HuggingFace Transformers & Tokenizers
-- PyTorch + Accelerate + TorchVision
+Made with ❤️ by Theubaa
